@@ -8,6 +8,25 @@ Early version of my work-in-progress Rust project generator.
 
 Probably don't use this.  I'm not very good at Rust yet.
 
+# Building
+
+1. Install Rust and Cargo
+2. Clone this repo
+3. `make install`
+
+# Usage
+
+1. Define `RUSTPATH` in your environment to point to the directory
+   where you want to create your Rust projects.
+2. `mkrust <project-name>`
+3. `cd $RUSTPATH/<project-name>`
+4. `make`
+5. Try it out with `./target/debug/<project-name>`
+6. `make install` to install the binary in `$HOME/bin`.
+7. After adding any unit tests, `make test` to run them.
+
+This is just how I like to do things.  YMMV.
+
 # License
 
 Copyright © 2023, John Jacobsen. MIT License.
