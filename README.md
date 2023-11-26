@@ -12,22 +12,26 @@ Since I work in several languages, and since various project tasks such as build
 releasing, etc. are conceptually the same, I like to give `make` targets to common operations,
 and this template reflects that approach.
 
+
 # Building
 
 1. Install Rust and Cargo
-2. Clone this repo
-3. `make install`
+1. Define `RUSTPATH` in your environment to point to the directory
+   where you want to create your Rust projects.
+2. If you want newly-created binaries to go somewhere other than $HOME/bin,
+   define `RUSTBIN` in your environment.
+2. Clone this repo as `$RUSTPATH/mkrust`
+3. `cd $RUSTPATH/mkrust`
+4. `make install`
 
 # Usage
 
-1. Define `RUSTPATH` in your environment to point to the directory
-   where you want to create your Rust projects.
-2. `mkrust <project-name>`
-3. `cd $RUSTPATH/<project-name>`
-4. `make`
-5. Try it out with `./target/debug/<project-name>`
-6. `make install` to install the binary in `$HOME/bin`.
-7. After adding any unit tests, `make test` to run them.
+1. `mkrust <project-name>`
+2. `cd $RUSTPATH/<project-name>`
+3. `make`
+4. Try it out with `./target/debug/<project-name>`
+5. `make install` to install the binary in `$HOME/bin`.
+6. After adding any unit tests, `make test` to run them.
 
 # Docs
 

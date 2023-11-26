@@ -67,6 +67,12 @@ fn write_makefile(project_name: &String, project_path: &String) {
     // Write the Makefile
     let makefile = format!(
         "PROJECT_NAME := {}
+# If RUSTBIN is set, use it as the rust binary directory:
+ifdef RUSTBIN
+\tBINDIR := ${{RUSTBIN}}
+else
+\tBINDIR := ${{HOME}}/bin
+endif
 
 .PHONY: all
 all: test build
@@ -111,7 +117,7 @@ release: ${{RELEASED}}
 
 .PHONY: install
 install: release
-\tcp ${{RELEASED}} ${{HOME}}/bin
+\tcp ${{RELEASED}} ${{BINDIR}}/${{PROJECT_NAME}}
 ",
         project_name
     );
