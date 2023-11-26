@@ -8,6 +8,10 @@ Early version of my work-in-progress Rust project generator.
 
 Probably don't use this.  I'm not very good at Rust yet.
 
+Since I work in several languages, and since various project tasks such as building,
+releasing, etc. are conceptually the same, I like to give `make` targets to common operations,
+and this template reflects that approach.
+
 # Building
 
 1. Install Rust and Cargo
@@ -25,7 +29,9 @@ Probably don't use this.  I'm not very good at Rust yet.
 6. `make install` to install the binary in `$HOME/bin`.
 7. After adding any unit tests, `make test` to run them.
 
-This is just how I like to do things.  YMMV.
+# Docs
+
+`make doc` will generate docs and open them in your browser.
 
 # License
 
