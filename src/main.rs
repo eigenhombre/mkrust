@@ -117,7 +117,8 @@ release: ${{RELEASED}}
 
 .PHONY: install
 install: release
-\tcp ${{RELEASED}} ${{BINDIR}}/${{PROJECT_NAME}}
+# Use cp rather than mv to avoid signing errors on Mac:
+\tmv ${{RELEASED}} ${{BINDIR}}/${{PROJECT_NAME}}
 ",
         project_name
     );

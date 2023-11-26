@@ -12,11 +12,12 @@ COPY src/main.rs ./src/main.rs
 RUN cargo fetch
 
 COPY . .
-RUN mkdir -p ~/bin
+RUN mkdir -p /work/bin
+ENV RUSTPATH=/work
+ENV RUSTBIN=/work/bin
 RUN make install
 
-ENV RUSTPATH=/work
-RUN ~/bin/mkrust example
+RUN /work/bin/mkrust example
 WORKDIR /work/example
 RUN make test install
-RUN ~/bin/example
+RUN /work/bin/example
