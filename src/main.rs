@@ -133,6 +133,10 @@ fn write_readme(project_name: &String, project_path: &String) {
     let readme = format!(
         "# {}
 
+<!--- <img src='/{}.jpg' width='400'> --->
+
+![build](https://github.com/eigenhombre/{}/actions/workflows/build.yml/badge.svg)
+
 # Introduction
 
 FIXME
@@ -140,6 +144,8 @@ FIXME
 # License
 {}
 ",
+        project_name,
+        project_name,
         project_name,
         license_text(year())
     );
