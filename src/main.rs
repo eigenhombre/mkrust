@@ -22,6 +22,24 @@ fn main() {
     write_readme(project_name, &project_path);
     write_makefile(project_name, &project_path);
     write_license(&project_path);
+    run_git_init(&project_path);
+}
+
+fn run_git_init(project_path: &String) {
+    // Run git init in the specified directory
+    let output = Command::new("git")
+        .arg("init")
+        .current_dir(&project_path)
+        .output();
+
+    // Check if git init was successful
+    match output {
+        Ok(_) => println!("Initialized git repository in '{}'.", project_path),
+        Err(err) => {
+            eprintln!("Error initializing git repository: {:?}", err);
+            exit(1);
+        }
+    }
 }
 
 fn license_text(year: u16) -> String {
