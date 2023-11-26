@@ -1,5 +1,7 @@
 # mkrust
 
+![build](https://github.com/eigenhombre/mkrust/actions/workflows/build.yml/badge.svg)
+
 Early version of my work-in-progress Rust project generator.
 
 Probably don't use this.  I'm not very good at Rust yet.
