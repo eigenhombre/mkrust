@@ -43,17 +43,21 @@ OTHER DEALINGS IN THE SOFTWARE.
     )
 }
 
+fn write_file_or_die(file_path: String, contents: String, file_name: &str) {
+    match std::fs::write(&file_path, &contents) {
+        Ok(_) => println!("Created {} file.", file_name),
+        Err(err) => {
+            eprintln!("Error creating {} file: {:?}", file_name, err);
+            exit(1);
+        }
+    }
+}
+
 fn write_license(project_path: &String) {
     // Construct the license text
     let license = license_text(year());
     let license_path = format!("{}/LICENSE", project_path);
-    match std::fs::write(&license_path, &license) {
-        Ok(_) => println!("Created LICENSE file."),
-        Err(err) => {
-            eprintln!("Error creating LICENSE file: {:?}", err);
-            exit(1);
-        }
-    }
+    write_file_or_die(license_path, license, "LICENSE");
 }
 
 fn write_makefile(project_name: &String, project_path: &String) {
@@ -111,13 +115,7 @@ install: release
 ",
         project_name
     );
-    match std::fs::write(&makefile_path, &makefile) {
-        Ok(_) => println!("Created Makefile."),
-        Err(err) => {
-            eprintln!("Error creating Makefile: {:?}", err);
-            exit(1);
-        }
-    }
+    write_file_or_die(makefile_path, makefile, "Makefile");
 }
 
 fn write_readme(project_name: &String, project_path: &String) {
@@ -138,13 +136,7 @@ FIXME
         project_name,
         license_text(year())
     );
-    match std::fs::write(&readme_path, &readme) {
-        Ok(_) => println!("Created README.md file."),
-        Err(err) => {
-            eprintln!("Error creating README.md file: {:?}", err);
-            exit(1);
-        }
-    }
+    write_file_or_die(readme_path, readme, "README.md");
 }
 
 fn write_gitignore(project_name: &String, project_path: &String) {
@@ -152,17 +144,8 @@ fn write_gitignore(project_name: &String, project_path: &String) {
     let gitignore_path = format!("{}/.gitignore", project_path);
 
     // Write the .gitignore file
-    let gitignore = format!("target\n{}.rs.bk", project_name);
-    match std::fs::write(&gitignore_path, &gitignore) {
-        Ok(_) => println!("Created .gitignore file."),
-        Err(err) => {
-            eprintln!(
-                "Error creating .gitignore file {}: {:?}",
-                gitignore_path, err
-            );
-            exit(1);
-        }
-    }
+    let gitignore = format!("target\n{}.rs.bk\n", project_name);
+    write_file_or_die(gitignore_path, gitignore, ".gitignore");
 }
 
 fn runcargo(project_name: &String, rustpath: String, project_path: &String) {
