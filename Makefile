@@ -1,4 +1,5 @@
 PROJECT_NAME := mkrust
+RELEASED := target/release/${PROJECT_NAME}
 
 .PHONY: all
 all: test build
@@ -27,13 +28,19 @@ doc:
 fmt:
 	cargo fmt
 
-RELEASED := target/release/${PROJECT_NAME}
-
-${RELEASED}: src/*.rs
-	cargo build --release
+.PHONY: deps
+deps:
+	cargo fetch
 
 .PHONY: release
 release: ${RELEASED}
+
+.PHONY: docker
+docker:
+	docker build -t ${PROJECT_NAME} .
+
+${RELEASED}: src/*.rs
+	cargo build --release
 
 .PHONY: install
 install: release

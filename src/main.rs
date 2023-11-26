@@ -2,12 +2,6 @@ use chrono::Datelike;
 use std::env;
 use std::process::{exit, Command};
 
-// Return year as integer:
-fn year() -> u16 {
-    let now = chrono::Local::now();
-    now.year() as u16
-}
-
 fn main() {
     // Get the project name from command line arguments
     let args: Vec<String> = env::args().collect();
@@ -96,6 +90,12 @@ doc:
 .PHONY: fmt
 fmt:
 \tcargo fmt
+
+.PHONY: deps
+deps:
+\tcargo fetch
+
+fast: build test doc fmt
 
 RELEASED := target/release/${{PROJECT_NAME}}
 
@@ -202,4 +202,10 @@ fn projpath(rustpath: &String, project_name: &String) -> String {
     // Construct the full path for the new project
     let project_path = format!("{}/{}", rustpath, project_name);
     project_path
+}
+
+// Return year as integer:
+fn year() -> u16 {
+    let now = chrono::Local::now();
+    now.year() as u16
 }
