@@ -16,7 +16,7 @@ and this template reflects that approach.
 1. Install Rust and Cargo
 1. Define `RUSTPATH` in your environment to point to the directory
    where you want to create your Rust projects.
-2. If you want newly-created binaries to go somewhere other than $HOME/bin,
+2. If you want newly-created binaries to go somewhere other than `$HOME/bin`,
    define `RUSTBIN` in your environment.
 2. Clone this repo as `$RUSTPATH/mkrust`
 3. `cd $RUSTPATH/mkrust`
