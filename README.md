@@ -29,7 +29,7 @@ and this template reflects that approach.
 2. `cd $RUSTPATH/<project-name>`
 3. `make`
 4. Try it out with `./target/debug/<project-name>`
-5. `make install` to install the binary in `$HOME/bin`.
+5. `make install` to install the binary in `$RUSTBIN`.
 6. After adding any unit tests, `make test` to run them.
 
 # Docs
