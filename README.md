@@ -6,8 +6,6 @@
 
 Early version of my work-in-progress Rust project generator.
 
-Probably don't use this.  I'm not very good at Rust yet.
-
 Since I work in several languages, and since various project tasks such as building,
 releasing, etc. are conceptually the same, I like to give `make` targets to common operations,
 and this template reflects that approach.
