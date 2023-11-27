@@ -18,11 +18,31 @@ fn main() {
     let project_path = projpath(&rustpath, &project_name);
     // Run cargo new in the specified directory:
     runcargo(project_name, rustpath, &project_path);
+    write_sample_test(&project_path);
     write_gitignore(project_name, &project_path);
     write_readme(project_name, &project_path);
     write_makefile(project_name, &project_path);
     write_license(&project_path);
     run_git_init(&project_path);
+}
+
+fn write_sample_test(project_path: &String) {
+    // Construct the full path for the sample test file
+    let test_path = format!("{}/tests/test.rs", project_path);
+
+    // Write the sample test file
+    let test = format!(
+        "#[cfg(test)]
+
+mod tests {{
+    #[test]
+    fn internal() {{
+        assert_eq!(1, 1);
+    }}
+}}
+"
+    );
+    write_file_or_die(test_path, test, "tests/test.rs");
 }
 
 fn run_git_init(project_path: &String) {
@@ -61,7 +81,28 @@ OTHER DEALINGS IN THE SOFTWARE.
     )
 }
 
+fn create_parent_dir(file_path: &String) {
+    // Get the parent directory of the file
+    let parent_dir = std::path::Path::new(&file_path)
+        .parent()
+        .unwrap()
+        .to_str()
+        .unwrap();
+
+    // Create the parent directory if it doesn't exist
+    if !std::path::Path::new(&parent_dir).exists() {
+        match std::fs::create_dir_all(&parent_dir) {
+            Ok(_) => (),
+            Err(err) => {
+                eprintln!("Error creating directory '{}': {:?}", parent_dir, err);
+                exit(1);
+            }
+        }
+    }
+}
+
 fn write_file_or_die(file_path: String, contents: String, file_name: &str) {
+    create_parent_dir(&file_path);
     match std::fs::write(&file_path, &contents) {
         Ok(_) => println!("Created {} file.", file_name),
         Err(err) => {
