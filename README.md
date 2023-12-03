@@ -6,11 +6,11 @@
 
 Early version of my work-in-progress Rust project generator.  Generated projects have:
 
-- README with MIT license, GitHub build badge, and commented-out artwork link;
-- Makefile with several commonly-used targets;
-- Trivial `main.rs` with a `hello world` message;
-- Example unit test;
-- Dockerfile for building a containerized version of the project;
+- README with MIT license, GitHub build badge, and commented-out artwork link
+- Makefile with several commonly-used targets
+- Trivial `main.rs` with a `hello world` message
+- Example unit test
+- Dockerfile for building a containerized version of the project
 - GitHub Actions workflow for building and testing the project.
 
 Since I work in several languages, and since various project tasks
