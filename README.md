@@ -4,11 +4,19 @@
 
 ![build](https://github.com/eigenhombre/mkrust/actions/workflows/build.yml/badge.svg)
 
-Early version of my work-in-progress Rust project generator.
+Early version of my work-in-progress Rust project generator.  Generated projects have:
 
-Since I work in several languages, and since various project tasks such as building,
-releasing, etc. are conceptually the same, I like to give `make` targets to common operations,
-and this template reflects that approach.
+- README with MIT license, GitHub build badge, and commented-out artwork link;
+- Makefile with several commonly-used targets;
+- Trivial `main.rs` with a `hello world` message;
+- Example unit test;
+- Dockerfile for building a containerized version of the project;
+- GitHub Actions workflow for building and testing the project.
+
+Since I work in several languages, and since various project tasks
+such as building, releasing, etc. are conceptually the same, I like to
+give `make` targets to common operations, and this template reflects
+that approach.
 
 
 # Building
@@ -18,10 +26,12 @@ and this template reflects that approach.
    where you want to create your Rust projects.
 1. `cd` to that directory.
 3. If you want newly-created binaries to go somewhere other than `$HOME/bin`,
-   define `RUSTBIN` in your environment.
+   define `RUSTBIN` in your environment.  In either case, the directory must exist
+   and be in your `$PATH`.
 2. Clone this repo
 3. `cd mkrust`
-4. `make install`
+4. Optional: `make`  if you want to build a debug version first
+5. `make install` to install the release binary in `$RUSTBIN`.
 
 # Usage
 
